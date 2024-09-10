@@ -61,25 +61,3 @@ public class UserService {
         userRepository.deleteById(id);
     }
 }
-
-
-
-
-
-//@Service
-
-//
-
-//    public PostDTO update(PostUpdateDTO postData, Long id) {
-//        var post = repository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
-//        postMapper.update(postData, post);
-//        repository.save(post);
-//        var postDTO = postMapper.map(post);
-//        return postDTO;
-//    }
-//
-//    public void delete(Long id) {
-//        repository.deleteById(id);
-//    }
-//}
