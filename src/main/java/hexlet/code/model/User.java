@@ -25,8 +25,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "users")
-//@Getter
-//@Setter
+@Getter
+@Setter
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails, BaseEntity {
     @Id
@@ -49,6 +49,7 @@ public class User implements UserDetails, BaseEntity {
     public String getPassword() {
         return passwordDigest;
     }
+
     @Override
     public String getUsername() {
         return email;
@@ -77,61 +78,5 @@ public class User implements UserDetails, BaseEntity {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPasswordDigest() {
-        return passwordDigest;
-    }
-
-    public void setPasswordDigest(String passwordDigest) {
-        this.passwordDigest = passwordDigest;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

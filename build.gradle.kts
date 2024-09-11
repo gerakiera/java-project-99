@@ -42,10 +42,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("net.datafaker:datafaker:2.3.1")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	compileOnly("org.mapstruct:mapstruct-jdk8:1.5.5.Final")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
 	annotationProcessor("org.projectlombok:lombok")
+
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("org.springframework.security:spring-security-test")
