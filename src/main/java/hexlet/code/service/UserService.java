@@ -56,6 +56,7 @@ public class UserService {
         var hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPasswordDigest(hashedPassword);
 
+        userRepository.save(user);
         return userMapper.map(user);
     }
 
