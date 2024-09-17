@@ -10,9 +10,15 @@ spring:
   profiles:
     default: development
 
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
 rsa:
   private-key: classpath:certs/private.pem
   public-key: classpath:certs/public.pem
 
-server:
-  address: 0.0.0.0
+  server:
+    address: 0.0.0.0
+    port: ${PORT:8080}
