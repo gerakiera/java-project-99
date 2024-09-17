@@ -1,29 +1,54 @@
 package hexlet.code.component;
 
-import hexlet.code.dto.user.UserCreateDTO;
-import hexlet.code.service.UserService;
+import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.service.CustomUserDetailsService;
+import hexlet.code.util.LabelUtils;
+import hexlet.code.util.TaskStatusUtils;
+import hexlet.code.util.UserUtils;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
     @Autowired
-    private UserService userService;
+    private final CustomUserDetailsService userService;
 
+    @Autowired
+    private final UserUtils userUtils;
+
+    @Autowired
+    private final TaskStatusUtils taskStatusUtils;
+
+    @Autowired
+    private final TaskStatusRepository taskStatusRepository;
+
+    @Autowired
+    private final LabelUtils labelUtils;
+
+    @Autowired
+    private final LabelRepository labelRepository;
     @Override
-    public void run(ApplicationArguments args) {
-        createAdmin();
-    }
+    public void run(ApplicationArguments args) throws Exception {
+        var admin = userUtils.createAdmin();
+        userService.createUser(admin);
 
-    public void createAdmin() {
-        UserCreateDTO userData = new UserCreateDTO();
-        userData.setEmail("hexlet@example.com");
-        userData.setPassword("qwerty");
-        userService.create(userData);
+        var defaultTaskStatuses = taskStatusUtils.getDefaultTaskStatuses();
+
+        for (var taskStatus : defaultTaskStatuses) {
+            taskStatusRepository.save(taskStatus);
+        }
+
+        var defaultLabels = labelUtils.getDefaultLabels();
+
+        for (var label : defaultLabels) {
+            labelRepository.save(label);
+        }
     }
 }
