@@ -3,7 +3,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
 	application
-	java
+	checkstyle
+	jacoco
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
 }
@@ -65,5 +66,11 @@ tasks.withType<Test> {
 		showStackTraces = true
 		showCauses = true
 		showStandardStreams = true
+	}
+}
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		xml.required = true
 	}
 }
