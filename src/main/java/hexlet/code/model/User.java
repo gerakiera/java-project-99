@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
@@ -32,6 +33,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "users")
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString(includeFieldNames = true, onlyExplicitlyIncluded = true)
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails, BaseEntity {
@@ -39,23 +41,28 @@ public class User implements UserDetails, BaseEntity {
     @ToString.Include
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     @ToString.Include
     private String firstName;
+
     @ToString.Include
     private String lastName;
+
     @NotBlank
     @Email
     @ToString.Include
     private String email;
+
     @NotBlank
     @Size(min = 3)
     private String passwordDigest;
+
     @CreatedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime createdAt;
+
     @LastModifiedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime updatedAt;
+
     @OneToMany(mappedBy = "assignee", cascade = CascadeType.MERGE)
     private List<Task> tasks;
 
