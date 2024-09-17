@@ -1,13 +1,15 @@
 package hexlet.code.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -34,16 +37,18 @@ public class User implements UserDetails, BaseEntity {
     private Long id;
     private String firstName;
     private String lastName;
-    @NotNull
+    @NotBlank
     @Email
     private String email;
-    @NotNull
+    @NotBlank
     @Size(min = 3)
     private String passwordDigest;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "assignee", cascade = CascadeType.MERGE)
+    private List<Task> tasks;
 
     @Override
     public String getPassword() {
