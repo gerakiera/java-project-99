@@ -15,16 +15,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TaskService {
 
     @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     @Autowired
-    private TaskMapper taskMapper;
+    private final TaskMapper taskMapper;
 
     @Autowired
-    private TaskUtils builder;
+    private final TaskUtils builder;
 
     public List<TaskDTO> getAll(TaskParamsDTO paramsDTO) {
         var specification = builder.build(paramsDTO);

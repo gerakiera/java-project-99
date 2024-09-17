@@ -6,7 +6,6 @@ import hexlet.code.service.CustomUserDetailsService;
 import hexlet.code.util.LabelUtils;
 import hexlet.code.util.TaskStatusUtils;
 import hexlet.code.util.UserUtils;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
