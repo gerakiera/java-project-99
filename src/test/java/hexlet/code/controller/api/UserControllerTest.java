@@ -101,9 +101,9 @@ public class UserControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Map<String, String> updateData = new HashMap<>() {{
-            put("firstName", "Kris");
-            put("email", "test@example.com");
-        }};
+                put("firstName", "Kris");
+                put("email", "test@example.com");
+            }};
 
         mockMvc.perform(
                 put("/api/users" + "/{id}", testUser.getId())
