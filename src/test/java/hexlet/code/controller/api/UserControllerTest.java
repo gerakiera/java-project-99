@@ -113,8 +113,8 @@ public class UserControllerTest {
         ).andExpect(status().isOk());
 
         User updatedUser = userRepository.findById(testUser.getId()).get();
-        assertThat(updatedUser.getFirstName()).isEqualTo("Andrew");
-        assertThat(updatedUser.getEmail()).isEqualTo("mail@example.com");
+        assertThat(updatedUser.getFirstName()).isEqualTo("Kris");
+        assertThat(updatedUser.getEmail()).isEqualTo("test@example.com");
     }
 
     @Test
