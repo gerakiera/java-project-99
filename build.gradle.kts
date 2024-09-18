@@ -7,6 +7,7 @@ plugins {
 	jacoco
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
+	id("io.freefair.lombok") version "8.10"
 }
 
 group = "hexlet.code"
@@ -43,6 +44,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("net.datafaker:datafaker:2.3.1")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.instancio:instancio-junit:3.6.0")
 
 	compileOnly("org.mapstruct:mapstruct-jdk8:1.5.5.Final")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
@@ -51,8 +53,12 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation(platform("org.junit:junit-bom:5.10.0"))
+	testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+	testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.4.1")
 	testImplementation("org.springframework.security:spring-security-test")
 
 	runtimeOnly("com.h2database:h2")
