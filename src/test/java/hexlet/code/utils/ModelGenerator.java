@@ -4,6 +4,8 @@ import hexlet.code.model.Label;
 import hexlet.code.model.Task;
 import hexlet.code.model.TaskStatus;
 import hexlet.code.model.User;
+import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskRepository;
 import hexlet.code.repository.TaskStatusRepository;
 import hexlet.code.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -25,10 +27,18 @@ public class ModelGenerator {
 
     @Autowired
     private Faker faker;
-    @Autowired
-    private TaskStatusRepository statusRepository;
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TaskStatusRepository taskStatusRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private LabelRepository labelRepository;
 
     @PostConstruct
     private void init() {
@@ -54,5 +64,34 @@ public class ModelGenerator {
                 .ignore(Select.field(Label::getId))
                 .ignore(Select.field(Label::getCreatedAt))
                 .toModel();
+    }
+    public void clean() {
+        taskRepository.deleteAll();
+        userRepository.deleteAll();
+        taskStatusRepository.deleteAll();
+        labelRepository.deleteAll();
+    }
+
+    public Task getTestTask() {
+        var testTask = Instancio.of(getTaskModel())
+                .create();
+
+        var testUser = Instancio.of(getUserModel())
+                .create();
+        userRepository.save(testUser);
+        testTask.setAssignee(testUser);
+
+        var testTaskStatus = Instancio.of(getTaskStatusModel())
+                .create();
+        taskStatusRepository.save(testTaskStatus);
+        testTask.setTaskStatus(testTaskStatus);
+
+        var testLabel = Instancio.of(getLabelModel())
+                .create();
+        labelRepository.save(testLabel);
+        testTask.getLabels().add(testLabel);
+        testLabel.getTasks().add(testTask);
+
+        return testTask;
     }
 }
