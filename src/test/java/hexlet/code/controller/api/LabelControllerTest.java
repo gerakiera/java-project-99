@@ -100,8 +100,8 @@ public class LabelControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Map<String, String> map = new HashMap<>() {{
-            put("name", "Test_Name");
-            }};
+                put("name", "Test_Name");
+        }};
                 mockMvc.perform(
                 put("/api/labels" + "/{id}", testLabel.getId())
                         .with(token)
