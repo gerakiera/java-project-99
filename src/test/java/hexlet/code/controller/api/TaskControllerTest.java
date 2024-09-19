@@ -93,7 +93,7 @@ public class TaskControllerTest {
         mockMvc.perform(
                 get("/api/tasks")
                         .with(token)
-        ).andExpect(header().string("X-Total-Count", "1"));;
+        ).andExpect(header().string("X-Total-Count", "1"));
     }
 
     @Test
