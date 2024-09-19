@@ -31,7 +31,9 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -67,17 +69,17 @@ public class TaskControllerTest {
         } else {
             newLabel = new Label();
             newLabel.setName("example label");
-            labelRepository.save(newLabel);
+        labelRepository.save(newLabel);
         }
-            TaskStatus status = new TaskStatus();
-            status.setSlug("draft");
-            status.setName("Draft");
-            taskStatusRepository.save(status);
+        TaskStatus status = new TaskStatus();
+        status.setSlug("draft");
+        status.setName("Draft");
+        taskStatusRepository.save(status);
 
-            testTask = modelGenerator.getTestTask();
-            testTask.setTaskStatus(status);
-            testTask.setLabels(Set.of(newLabel));
-            taskRepository.save(testTask);
+        testTask = modelGenerator.getTestTask();
+        testTask.setTaskStatus(status);
+        testTask.setLabels(Set.of(newLabel));
+        taskRepository.save(testTask);
     }
 
     @AfterEach
