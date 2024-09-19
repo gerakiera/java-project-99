@@ -102,7 +102,7 @@ public class LabelControllerTest {
         Map<String, String> map = new HashMap<>() {{
             put("name", "Test_Name");
             }};
-            mockMvc.perform(
+                mockMvc.perform(
                 put("/api/labels" + "/{id}", testLabel.getId())
                         .with(token)
                         .contentType(MediaType.APPLICATION_JSON)
