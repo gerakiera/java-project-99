@@ -49,9 +49,8 @@ public class LabelControllerTest {
     @BeforeEach
     public void beforeEach() {
         token = jwt().jwt(builder -> builder.subject("hexlet@example.com"));
-            testLabel = new Label();
-            testLabel.setName("example label");
-            labelRepository.save(testLabel);
+        testLabel = new Label();
+        testLabel.setName("example label");
         labelRepository.save(testLabel);
     }
 
@@ -100,11 +99,10 @@ public class LabelControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        Map<String, String> map = new HashMap<>(){{
+        Map<String, String> map = new HashMap<>() {{
             put("name", "Test_Name");
-        }};
-
-        mockMvc.perform(
+            }};
+            mockMvc.perform(
                 put("/api/labels" + "/{id}", testLabel.getId())
                         .with(token)
                         .contentType(MediaType.APPLICATION_JSON)
