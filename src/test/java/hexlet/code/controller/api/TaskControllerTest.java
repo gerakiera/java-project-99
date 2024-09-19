@@ -69,7 +69,7 @@ public class TaskControllerTest {
         } else {
             newLabel = new Label();
             newLabel.setName("example label");
-        labelRepository.save(newLabel);
+            labelRepository.save(newLabel);
         }
         TaskStatus status = new TaskStatus();
         status.setSlug("draft");
