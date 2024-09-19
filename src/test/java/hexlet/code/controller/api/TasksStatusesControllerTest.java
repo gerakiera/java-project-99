@@ -103,9 +103,9 @@ public class TasksStatusesControllerTest {
     @Test
     public void testUpdate() throws Exception {
         Map<String, String> updateData = new HashMap<>() {{
-            put("name", "Testname");
-            put("slug", "Testslug");
-        }};
+                put("name", "Testname");
+                put("slug", "Testslug");
+            }};
         mockMvc.perform(
                 put("/api/task_statuses" + "/{id}", testTaskStatus.getId())
                         .with(token)
