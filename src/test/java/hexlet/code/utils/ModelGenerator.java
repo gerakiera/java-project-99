@@ -65,12 +65,6 @@ public class ModelGenerator {
                 .ignore(Select.field(Label::getCreatedAt))
                 .toModel();
     }
-    public void clean() {
-        taskRepository.deleteAll();
-        userRepository.deleteAll();
-        taskStatusRepository.deleteAll();
-        labelRepository.deleteAll();
-    }
 
     public Task getTestTask() {
         var testTask = Instancio.of(getTaskModel())
