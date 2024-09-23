@@ -22,3 +22,7 @@ rsa:
   server:
     address: 0.0.0.0
     port: ${PORT:8080}
+
+sentry:
+  dsn: https://94986d86d9b5d2c41f11cd1820df8090@o4507996320366592.ingest.de.sentry.io/4508002095267920
+  traces-sample-rate: 1.0
